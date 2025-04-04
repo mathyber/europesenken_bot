@@ -1,5 +1,4 @@
 const db = require('../db');
-const { premium } = require('../../config/config');
 
 class User {
     static async createOrUpdate(userId, username) {
@@ -21,16 +20,6 @@ class User {
         }
     }
 
-    static async setPremium(userId) {
-        const expiresAt = new Date();
-        expiresAt.setDate(expiresAt.getDate() + premium.defaultDurationDays);
-
-        await db.run(
-            'UPDATE users SET isPremium = 1, premiumUntil = ? WHERE id = ?',
-            [expiresAt.toISOString(), userId]
-        );
-    }
-
     static async getAll(page = 1, perPage = 10) {
         const offset = (page - 1) * perPage;
         return await db.all(
@@ -42,15 +31,6 @@ class User {
     static async count() {
         const result = await db.get('SELECT COUNT(*) as count FROM users');
         return result.count;
-    }
-
-    static async isPremiumActive(userId) {
-        const user = await db.get(
-            'SELECT premiumUntil FROM users WHERE id = ?',
-            [userId]
-        );
-        if (!user || !user.premiumUntil) return false;
-        return new Date(user.premiumUntil) > new Date();
     }
 
     static async get(sql, params = []) {

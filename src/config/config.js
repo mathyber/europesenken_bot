@@ -6,12 +6,8 @@ module.exports = {
     pagination: {
         perPage: 10
     },
-    premium: {
-        defaultDurationDays: 30
-    },
     commands: [
         '/me - Посмотреть информацию о себе',
-        '/premium - Получить премиум статус',
         '/webapp - Открыть Web-приложение',
         '/help - Все команды'
     ],
@@ -19,6 +15,6 @@ module.exports = {
         '/users - Список пользователей'
     ],
     webapp: {
-        url: 'https://my-telegram-webapp.example.com'
+        url: 'https://laritovski.ru/europesenken/'
     }
 };
