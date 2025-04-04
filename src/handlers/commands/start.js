@@ -1,7 +1,7 @@
 const userService = require('../../services/userService');
 const path = require("path");
 const {commandsText} = require("../../utils/helpers");
-const {webapp} = require("../../config/config");
+const {webapp, adminId} = require("../../config/config");
 const img = path.join(__dirname, '../../files/1.jpg');
 
 module.exports = async (ctx) => {
@@ -12,7 +12,7 @@ module.exports = async (ctx) => {
         { source: img },
         {
             caption: 'Добро пожаловать!\n' +
-                commandsText(),
+                commandsText(id.toString() === adminId),
             reply_markup: {
                 inline_keyboard: [
                     [{
