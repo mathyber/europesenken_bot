@@ -8,8 +8,8 @@ module.exports = async (ctx) => {
     const totalPages = Math.ceil(total / pagination.perPage);
 
     const buttons = [];
-    if (page > 1) buttons.push({ text: '← Назад', callback_data: `users:${page - 1}` });
-    if (page < totalPages) buttons.push({ text: 'Далее →', callback_data: `users:${page + 1}` });
+    if (page > 1) buttons.push({ text: '←', callback_data: `users:${page - 1}` });
+    if (page < totalPages) buttons.push({ text: '→', callback_data: `users:${page + 1}` });
 
     await ctx.editMessageText(
         formatUserList(users, page, total),
