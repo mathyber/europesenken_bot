@@ -1,6 +1,18 @@
 module.exports = async (ctx) => {
     try {
         console.log(ctx.webAppData)
+        console.log(ctx.webAppData)
+        console.log(ctx.webAppData)
+        console.log(ctx.webAppData)
+        console.log(ctx.webAppData)
+        console.log(ctx.webAppData)
+        console.log(ctx.webAppData)
+        console.log(ctx.webAppData)
+        console.log(ctx.webAppData)
+        console.log(ctx.webAppData)
+        console.log(ctx.webAppData)
+        console.log(ctx.webAppData)
+        console.log(ctx.webAppData)
         const data = JSON.parse(ctx.webAppData.data);
         const userId = data.userId;
         const message = data.message;

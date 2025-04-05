@@ -17,22 +17,7 @@ bot.command('help', helpHandler);
 bot.command('webapp', webappHandler);
 bot.action(/users:(\d+)/, paginationHandler);
 
-// bot.on('web_app_data', webAppData);
-bot.on('web_app_data', async (ctx) => {
-    console.log('Web App data received:', ctx.webAppData); // Лог для отладки
-    try {
-        const data = JSON.parse(ctx.webAppData.data);
-        console.log('Parsed data:', data); // Лог после парсинга
-        const userId = data.userId;
-        const message = data.message;
-
-        await ctx.telegram.sendMessage(userId, `Получено от Web App: ${message}`);
-        console.log('Message sent to user:', userId);
-    } catch (err) {
-        console.error('Error processing web app data:', err);
-        await ctx.telegram.sendMessage(userId || ctx.from.id, 'Произошла ошибка при обработке данных.');
-    }
-});
+bot.on('web_app_data', webAppData);
 
 bot.launch()
     .then(() => console.log('Bot started'))
