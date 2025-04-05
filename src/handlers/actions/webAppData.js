@@ -13,23 +13,22 @@ module.exports = async (ctx) => {
         })
         console.log(ctx.from);
         await ctx.reply(
-            `<i>${ctx.from.first_name}${ctx.from.username ? ` @${ctx.from.username}` : ''} лайкнул эти песни Евровидения 2025:</i>
+            `<i>${ctx.from.first_name}${ctx.from.username ? ` (@${ctx.from.username})` : ''} лайкнул эти песни Евровидения 2025:</i>
 
 ${songsData(songsInfo)}`,
             { parse_mode: 'HTML' }
         );
 
-        const mediaGroup = songsInfo.map(song => ({
-            type: 'audio',
-            media: `https://laritovski.ru${song.audio}`,
-            title: `${song.name}`,
-            performer: `${song.flag} ${song.artist}`,
-            // parse_mode: "MarkdownV2",
-        }));
+        for (const song of songsInfo) {
+            await ctx.replyWithAudio(
+                { url: `https://laritovski.ru${song.audio}` },
+                {
+                    title: `${song.name}`,
+                    performer: `${song.flag} ${song.artist}`,
+                }
+            );
+        }
 
-        // await ctx.sendMediaGroup(ctx.from.id, mediaGroup)
-        // await ctx.sendMediaGroup(mediaGroup)
-        await ctx.telegram.sendMediaGroup(ctx.from.id, mediaGroup);
     } catch (err) {
         console.error('Error processing web app data:', err);
         await ctx.reply('Произошла ошибка при обработке данных.');
