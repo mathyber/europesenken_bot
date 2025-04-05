@@ -3,7 +3,7 @@ module.exports = async (ctx) => {
 
     let message = `Информация о вас:\n`;
     message += `ID: ${id}\n`;
-    message += `Username: @${username || 'не указан'}\n`;
+    message += `Username: TEST @${username || 'не указан'}\n`;
 
     await ctx.reply(message);
 };
