@@ -2,9 +2,7 @@ const {songsArray} = require("../../config/songs");
 const {songsData} = require("../../utils/helpers");
 module.exports = async (ctx) => {
     try {
-        console.log(ctx.webAppData.data.json())
         const data = ctx.webAppData.data.json();
-        const userId = data.userId;
         const songs = data.songs;
         const songsInfo = songs?.map(s => {
             const sD = songsArray.find(sA => sA.id === s.id);
@@ -13,9 +11,11 @@ module.exports = async (ctx) => {
                 ...sD
             }
         })
-        console.log(songsInfo);
+        console.log(ctx.from);
         await ctx.reply(
-            songsData(songsInfo),
+            `<i>Пользователь @${ctx.from.username} лайкнул эти песни Евровидения 2025:</i>
+
+${songsData(songsInfo)}`,
             { parse_mode: 'HTML' }
         );
 
