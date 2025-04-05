@@ -4,7 +4,12 @@ module.exports = async (ctx) => {
         const data = ctx.webAppData.data.json();
         const userId = data.userId;
         const message = data.message;
-
+        await ctx.replyWithPhoto(
+            { url: message },
+            {
+                caption: 'gg'
+            }
+        );
         await ctx.reply(`Получено от Web App (${userId}): ${message}`)
     } catch (err) {
         console.error('Error processing web app data:', err);
