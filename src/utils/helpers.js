@@ -17,4 +17,10 @@ module.exports = {
                     adminCommands.join('\n'))
                 : ''
         ),
+    songsData: (songs) => {
+        return songs.map(s => `
+${s.flag} <i>${s.country}</i>
+${s.artist} - <b>${s.name}</b>
+    `).join('\n');
+    }
 };
