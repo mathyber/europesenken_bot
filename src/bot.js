@@ -16,14 +16,6 @@ bot.command('me', meHandler);
 bot.command('help', helpHandler);
 bot.command('webapp', webappHandler);
 bot.action(/users:(\d+)/, paginationHandler);
-
 bot.on('web_app_data', webAppData);
-
-bot.launch()
-    .then(() => console.log('Bot started'))
-    .catch((err) => console.error('Bot failed to start:', err));
-
-process.once('SIGINT', () => bot.stop('SIGINT'));
-process.once('SIGTERM', () => bot.stop('SIGTERM'));
 
 module.exports = bot;

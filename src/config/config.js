@@ -3,6 +3,7 @@ require('dotenv').config();
 module.exports = {
     botToken: process.env.BOT_TOKEN,
     adminId: process.env.ADMIN_ID,
+    port: process.env.PORT || 8443,
     pagination: {
         perPage: 10
     },
