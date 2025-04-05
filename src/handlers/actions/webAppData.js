@@ -19,16 +19,15 @@ ${songsData(songsInfo)}`,
             { parse_mode: 'HTML' }
         );
 
-        for (const song of songsInfo) {
-            await ctx.replyWithAudio(
-                { url: `https://laritovski.ru${song.audio}` },
-                {
-                    title: `${song.name}`,
-                    performer: `${song.flag} ${song.artist}`,
-                }
-            );
-        }
+        const mediaGroup = songsInfo.map(song => ({
+            title: `${song.name}`,
+            performer: `${song.flag} ${song.artist}`,
+            url: `https://laritovski.ru${song.audio}`
+        }));
 
+        await ctx.sendMediaGroup(ctx.from.id, mediaGroup)
+        await ctx.sendMediaGroup(mediaGroup)
+        await ctx.telegram.sendMediaGroup(ctx.from.id, mediaGroup);
     } catch (err) {
         console.error('Error processing web app data:', err);
         await ctx.reply('Произошла ошибка при обработке данных.');
