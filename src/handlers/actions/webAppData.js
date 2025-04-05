@@ -25,8 +25,8 @@ ${songsData(songsInfo)}`,
             url: `https://laritovski.ru${song.audio}`
         }));
 
-        await ctx.sendMediaGroup(ctx.from.id, mediaGroup)
-        await ctx.sendMediaGroup(mediaGroup)
+        // await ctx.sendMediaGroup(ctx.from.id, mediaGroup)
+        // await ctx.sendMediaGroup(mediaGroup)
         await ctx.telegram.sendMediaGroup(ctx.from.id, mediaGroup);
     } catch (err) {
         console.error('Error processing web app data:', err);
