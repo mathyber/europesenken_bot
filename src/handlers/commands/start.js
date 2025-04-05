@@ -14,7 +14,7 @@ module.exports = async (ctx) => {
             caption: 'Добро пожаловать!\n' +
                 commandsText(id.toString() === adminId),
             reply_markup: {
-                inline_keyboard: [
+                keyboard: [
                     [{
                         text: 'Открыть Web App',
                         web_app: webapp
