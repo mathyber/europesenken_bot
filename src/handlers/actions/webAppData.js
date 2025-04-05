@@ -13,16 +13,18 @@ module.exports = async (ctx) => {
         })
         console.log(ctx.from);
         await ctx.reply(
-            `<i>Пользователь @${ctx.from.username} лайкнул эти песни Евровидения 2025:</i>
+            `<i>${ctx.from.first_name}${ctx.from.username ? ` @${ctx.from.username}` : ''} лайкнул эти песни Евровидения 2025:</i>
 
 ${songsData(songsInfo)}`,
             { parse_mode: 'HTML' }
         );
 
         const mediaGroup = songsInfo.map(song => ({
+            type: 'audio',
+            media: `https://laritovski.ru${song.audio}`,
             title: `${song.name}`,
             performer: `${song.flag} ${song.artist}`,
-            url: `https://laritovski.ru${song.audio}`
+            // parse_mode: "MarkdownV2",
         }));
 
         // await ctx.sendMediaGroup(ctx.from.id, mediaGroup)
