@@ -18,6 +18,18 @@ module.exports = async (ctx) => {
             songsData(songsInfo),
             { parse_mode: 'HTML' }
         );
+
+        songsInfo.map(song => {
+            ctx.replyWithAudio(
+                { url: `https://laritovski.ru${song.audio}` },
+                {
+                    title: `${song.flag} ${song.name}`,
+                    performer: song.artist,
+                    caption: 'Отрывок песни',
+                }
+            );
+        })
+
     } catch (err) {
         console.error('Error processing web app data:', err);
         await ctx.reply('Произошла ошибка при обработке данных.');
