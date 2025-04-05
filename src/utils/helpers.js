@@ -16,5 +16,5 @@ module.exports = {
                 ? ('\n\nДля администратора:\n' +
                     adminCommands.join('\n'))
                 : ''
-        )
+        ),
 };
