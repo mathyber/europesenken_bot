@@ -19,8 +19,8 @@ module.exports = async (ctx) => {
             { parse_mode: 'HTML' }
         );
 
-        songsInfo.map(song => {
-            ctx.replyWithAudio(
+        for (const song of songsInfo) {
+            await ctx.replyWithAudio(
                 { url: `https://laritovski.ru${song.audio}` },
                 {
                     title: `${song.flag} ${song.name}`,
@@ -28,7 +28,7 @@ module.exports = async (ctx) => {
                     caption: 'Отрывок песни',
                 }
             );
-        })
+        }
 
     } catch (err) {
         console.error('Error processing web app data:', err);
