@@ -23,9 +23,8 @@ module.exports = async (ctx) => {
             await ctx.replyWithAudio(
                 { url: `https://laritovski.ru${song.audio}` },
                 {
-                    title: `${song.flag} ${song.name}`,
-                    performer: song.artist,
-                    caption: 'Отрывок песни',
+                    title: `${song.name}`,
+                    performer: `${song.flag} ${song.artist}`,
                 }
             );
         }
